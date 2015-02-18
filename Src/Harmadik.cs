@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace test
 {
-    enum beolvas_error
+    public enum beolvas_error
     {
         NEM_OT,
         HIBAS_SZAM,
         TOBB_MINT_OT,
         NINCS_HIBA
         };
+
     class Harmadik
     {
         static int[] szamok = new int[5]; //beolvasott számok tömbje
         static int result; //átkonvertált beolvasott érték
 
-        static public void Feladat()
+        public static void Feladat()
         {
             beolvas_error hiba = Beolvasas();
             
