@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Src\elso.cs" />
+    <Compile Include="Src\Elso.cs" />
     <Compile Include="Src\Harmadik.cs" />
     <Compile Include="Src\Kacsa.cs" />
     <Compile Include="Src\Masodik.cs" />
