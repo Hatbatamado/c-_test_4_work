@@ -19,23 +19,26 @@ namespace test
             else
                 Console.Write("A megadott szám nem prím szám");
 
+            Console.ReadKey();
         }
 
+        //megmondja a paraméterben átadott számról, hogy prím-e, ha igen true-val tér vissza
         private static bool Prim(int szam)
         {
             if (szam >= 2) //2-től vannak a prím számok
             {
                 int gyok = (int)Math.Sqrt(szam); //sorozat gyökéig kell nézni
-                int db = 0;
+                bool vanOszto = false;
 
                 for (int i = 1; i <= gyok; i++) //osztó db sztámok keresése
                     if (szam % i == 0)
-                        db++;
-
-                if (db == 1) //osztó db szám alapján prím-e
-                    return true;
-                else
-                    return false;
+                    {
+                        //már van osztója ezen kívül, tuti nem prím
+                        if (vanOszto)
+                            return false;
+                        vanOszto = true;
+                    }
+                return true;
             }
             else
                 return false;

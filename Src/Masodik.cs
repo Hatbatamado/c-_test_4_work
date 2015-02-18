@@ -4,33 +4,35 @@ namespace test
 {
     class Masodik
     {
+        const int fibodb = 5; //Fibonacci sorozat elemeinek száma
+
         public static void Feladat()
         {
-            Fibonacci();
+            GetFibonacci(fibodb);
             
             Console.ReadKey();
         }
 
-        private static void Fibonacci()
+        private static void GetFibonacci(int hany)
         {
-            const int fibodb = 5; //Fibonacci sorozat elemeinek száma
-            int[] fibo = new int[fibodb]; //Fibonacci számokat tartalmazó tömb
+            
+            int[] fibo = new int[hany]; //Fibonacci számokat tartalmazó tömb
 
             Console.Clear();
-            Console.Write("A(z) " + fibodb + " db fibonacci szám:");
+            Console.Write("A(z) " + hany + " db fibonacci szám:");
             for (int i = 0; i < fibo.Length; i++)
             {
-                fibo[i] = Fib(i); //Fibonacci-s tömb feltöltése
+                fibo[i] = RecursiveFibonacci(i); //Fibonacci-s tömb feltöltése
                 Console.Write(" " + fibo[i]); //konzolra kiíratás
             }
         }
 
-        private static int Fib(int N) //N-edik Fibonacci szám
+        private static int RecursiveFibonacci(int N) //N-edik Fibonacci szám
         {
             if (N <= 1)
                 return N;
             else
-                return (Fib(N - 1) + Fib(N - 2));
+                return (RecursiveFibonacci(N - 1) + RecursiveFibonacci(N - 2));
         }
     }
 }
