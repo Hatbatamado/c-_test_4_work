@@ -21,15 +21,18 @@ namespace test
             get { return y; }
         }
 
-        public Kacsa(Random R)
+        public Kacsa()
         {
-            x = R.Next(0, 6); //véletlen X koordináta 0-5
-            y = R.Next(0, 11); //véletlen Y koordináta 0-10
+            
+            x = 
+            x = RandomHelper.GetRandomGenerator.Next(0, 6); //véletlen X koordináta 0-5
+            y = RandomHelper.GetRandomGenerator.Next(0, 11); //véletlen Y koordináta 0-10
+            //Lep(R); //véletlen mozgás balra, felfele, balra átlósan
         }
 
-        public void Lep(Random R)
+        public void Lep()
         {
-            switch(R.Next(0,3)) //véletlen mozgás balra (0), felfele (1), balra átlósan (2)
+            switch (RandomHelper.GetRandomGenerator.Next(0, 3)) //véletlen mozgás balra (0), felfele (1), balra átlósan (2)
             {
                 case 0: //véletlen mozgás balra (0)
                     if ((x + 1) <= 5) //játéktér szélén megáll a kacsa és már csak 1 irányba tud menni

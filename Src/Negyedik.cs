@@ -12,17 +12,15 @@ namespace test
     class Negyedik
     {
         static List<Kacsa> kacsak; //kacsákat tartalmazó lista
-        static Random R;
         static int result, x, y; //felhasználó lövésének koordinátái
 
         public static void Feladat()
         {
-            R = new Random();
             kacsak = new List<Kacsa>();
         
             for (int i = 0; i < 10; i++) //kacsák lista feltölése
-                kacsak.Add(new Kacsa(R));
-
+                kacsak.Add(new Kacsa());
+            
             Kor(); //Körök lefuttatása
 
             Console.ReadKey();
@@ -105,7 +103,7 @@ namespace test
 
             for (int i = 0; i < kacsak.Count; i++)
             {
-                kacsak[i].Lep(R); //kacsák léptetése
+                kacsak[i].Lep(); //kacsák léptetése
 
                 if (kacsak[i].X == 5 && kacsak[i].Y == 10) //kacsa elért a célba
                 {

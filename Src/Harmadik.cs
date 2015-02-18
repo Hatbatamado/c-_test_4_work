@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace test
 {
-    enum beolvas_error { nem_öt, hibás_szám, több_mint_öt, nincs_hiba };
+    enum beolvas_error
+    {
+        NEM_OT,
+        HIBAS_SZAM,
+        TOBB_MINT_OT,
+        NINCS_HIBA
+        };
     class Harmadik
     {
         static int[] szamok = new int[5]; //beolvasott számok tömbje
@@ -16,7 +22,7 @@ namespace test
         {
             beolvas_error hiba = Beolvasas();
             
-            if (hiba != beolvas_error.nincs_hiba)
+            if (hiba != beolvas_error.NINCS_HIBA)
                 Beolvas_hiba(hiba);
             else
             {
@@ -24,14 +30,14 @@ namespace test
                 
                 Console.WriteLine();
 
-                Uj_szam_kereses(); //új szám megadása, majd megkeresése a tömbben
+                UjSzamKereses(); //új szám megadása, majd megkeresése a tömbben
             }
 
             Console.ReadKey();
         }
 
         //új szám megadása, majd megkeresése a tömbben
-        private static void Uj_szam_kereses()
+        private static void UjSzamKereses()
         {
             do
             {
@@ -49,29 +55,27 @@ namespace test
         //beolvassuk a konzolról a szám adatokat
         private static beolvas_error Beolvasas()
         {
-            
-            string beolvas; //beolvasott szöveg sorozat
-
             Console.Clear();
             Console.Write("Adjon meg 5 számot szóközzel elválasztva: ");
+            string beolvas; //beolvasott szöveg sorozat
             beolvas = Console.ReadLine();
 
             string[] seged = beolvas.Split(' '); //beolvasott sorozat felosztása szóköz alapján
-            if (seged.Length < 5) //megnézzük, hogy a felosztás után tényleg 5 szám van-e
-                return beolvas_error.nem_öt;
-            else if (seged.Length == 5) //5db beolvasott esetén
+            if (seged.Length == 5) //5db beolvasott esetén
             {
                 for (int i = 0; i < seged.Length; i++)
                 {
                     if (int.TryParse(seged[i], out result)) //megpróbáljuk átalakítani
                         szamok[i] = result;
                     else
-                        return beolvas_error.hibás_szám;
+                        return beolvas_error.HIBAS_SZAM;
                 }
-                return beolvas_error.nincs_hiba;
+                return beolvas_error.NINCS_HIBA;
             }
+            else if (seged.Length < 5) //megnézzük, hogy a felosztás után tényleg 5 szám van-e
+                return beolvas_error.NEM_OT;
             else
-                return beolvas_error.több_mint_öt; //több, mint 5 számot kaptunk beolvasásnál
+                return beolvas_error.TOBB_MINT_OT; //több, mint 5 számot kaptunk beolvasásnál
         }
 
         //beolvasás közben történt hiba esetek
@@ -79,13 +83,13 @@ namespace test
         {
             switch (error)
             {
-                case beolvas_error.hibás_szám:
+                case beolvas_error.HIBAS_SZAM:
                     Console.WriteLine("Hibás számot adott meg!");
                     break;
-                case beolvas_error.nem_öt:
+                case beolvas_error.NEM_OT:
                     Console.WriteLine("Nem 5 számot adott meg!");
                     break;
-                case beolvas_error.több_mint_öt:
+                case beolvas_error.TOBB_MINT_OT:
                     Console.WriteLine("Több, mint 5 számot adott meg!");
                     break;
             }
