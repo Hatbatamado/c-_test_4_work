@@ -18,6 +18,9 @@ namespace test
             Console.WriteLine("*  1. feladat          *");
             Console.WriteLine("*  2. feladat          *");
             Console.WriteLine("*  3. feladat          *");
+            Console.WriteLine("*  4. feladat          *");
+            Console.WriteLine("*                      *");
+            Console.Write("************************");
 
             key = Console.ReadKey();
             switch(key.Key)
@@ -33,6 +36,10 @@ namespace test
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
                     Harmadik.Feladat();
+                    break;
+                case ConsoleKey.D4:
+                case ConsoleKey.NumPad4:
+                    Negyedik.Feladat();
                     break;
             }
             
