@@ -4,12 +4,13 @@ namespace test
 {
     class Elso
     {
-        const int minprim = 2;
+        const int minprim = 2; //2-től vannak a prím számok
 
         public static void Feladat()
         {
             int result; //megadott szám konvertált értéke
             bool siker; //megadott szám konvertálása sikeres-e
+            
             do
             {
                 Console.Clear();
@@ -18,7 +19,7 @@ namespace test
             }//csak akkor fusson tovább, ha pozitív és ha sikerült konvertálni
             while (!siker || result < 0);
 
-            if (Prim(result))
+            if (Prim(result)) //megmondja a paraméterben átadott számról, hogy prím-e
                 Console.Write("A megadott szám prím szám");
             else
                 Console.Write("A megadott szám nem prím szám");
