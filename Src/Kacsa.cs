@@ -4,13 +4,13 @@ namespace test
 {
     class Kacsa
     {
-        int x; //kacsa X koordináta: 0..5
+        private int x; //kacsa X koordináta: 0..5
 
         public int X
         {
             get { return x; }
         }
-        int y; //kacsa Y koordináta: 0..10
+        private int y; //kacsa Y koordináta: 0..10
 
         public int Y
         {
