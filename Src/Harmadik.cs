@@ -2,13 +2,10 @@
 
 namespace test
 {
-    public enum beolvas_error
-    {
-        NEM_OT,
-        HIBAS_SZAM,
-        TOBB_MINT_OT,
-        NINCS_HIBA
-        };
+    public enum beolvas_error { NEM_OT,
+                                HIBAS_SZAM,
+                                TOBB_MINT_OT,
+                                NINCS_HIBA };
 
     class Harmadik
     {
@@ -17,9 +14,9 @@ namespace test
 
         public static void Feladat()
         {
-            beolvas_error hiba = Beolvasas();
+            beolvas_error hiba = Beolvasas(); //adatok beolvasása és az olvasás közbeni hiba ellenőrzés
             
-            if (hiba != beolvas_error.NINCS_HIBA)
+            if (hiba != beolvas_error.NINCS_HIBA) //hiba lekezelése
                 Beolvas_hiba(hiba);
             else
             {
@@ -42,8 +39,8 @@ namespace test
             }
             while (!(int.TryParse(Console.ReadLine(), out result))); //addig fut, amíg át nem tudja konvertálni
 
+            //szamok tömb, a tömb min elem száma, a tömb max elem száma, keresendő szám
             if (Kereses(szamok, 0, szamok.Length - 1, result))
-                //szamok tömbben, tömb min elem száma, tömb max elem száma, keresendő szám
                 Console.Write("A szám megtalálható az előbb megadott sorozatban.");
             else
                 Console.Write("A szám nem található meg az előbb megadott sorozatban.");
@@ -52,9 +49,10 @@ namespace test
         //beolvassuk a konzolról a szám adatokat
         private static beolvas_error Beolvasas()
         {
-            Console.Clear();
-            Console.Write("Adjon meg 5 számot szóközzel elválasztva: ");
             string beolvas; //beolvasott szöveg sorozat
+
+            Console.Clear();
+            Console.Write("Adjon meg 5 számot szóközzel elválasztva: ");            
             beolvas = Console.ReadLine();
 
             string[] seged = beolvas.Split(' '); //beolvasott sorozat felosztása szóköz alapján
@@ -65,7 +63,7 @@ namespace test
                     if (int.TryParse(seged[i], out result)) //megpróbáljuk átalakítani
                         szamok[i] = result;
                     else
-                        return beolvas_error.HIBAS_SZAM;
+                        return beolvas_error.HIBAS_SZAM; //sikertelen álalakítás
                 }
                 return beolvas_error.NINCS_HIBA;
             }
@@ -75,7 +73,7 @@ namespace test
                 return beolvas_error.TOBB_MINT_OT; //több, mint 5 számot kaptunk beolvasásnál
         }
 
-        //beolvasás közben történt hiba esetek
+        //beolvasás közben történt hiba esetek kezelése
         private static void Beolvas_hiba(beolvas_error error)
         {
             switch (error)
@@ -112,16 +110,17 @@ namespace test
                 }
                 X[j + 1] = Y;
             }
-            
-            Console.Write("A bekért számok rendezve:");
+
             //rendezés után kiíratjuk a képernyőre a tömb elemeit
+            Console.Write("A bekért számok rendezve:");
             for (int i = 0; i < szamok.Length; i++)
                 Console.Write(" " + szamok[i]);
         }
 
         //rekurzív bináris / logaritmikus keresés
+        //vizsgálandó tömb, kezdő index, utolsó index, keresendő érték
         static private bool Kereses(int[] tomb, int E, int U, int Y)
-        { //vizsgálandó tömb, kezdő index, utolsó index, keresendő értékk
+        { 
             int K;
 
             if (E > U)

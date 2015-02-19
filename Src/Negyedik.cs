@@ -4,7 +4,9 @@ using System.Collections.Generic;
 namespace test
 {
 
-    enum Loveshiba { hibas_koordinata, nincs_hiba };
+    enum Loveshiba { hibas_koordinata, 
+                     nincs_hiba,
+                     csalas };
 
     class Negyedik
     {
@@ -26,8 +28,26 @@ namespace test
         //Körök lefuttatása
         private static void Kor()
         {
+            Loveshiba hiba;
             do
             {
+                Kiiras(); //kacsák koordinátái és a célhoz legközelebbi kacsa távolsága kiírása
+
+                //felhasználó általáli lövés
+                hiba = Loves();
+                if (hiba != Loveshiba.nincs_hiba)
+                    Loves_error(hiba);
+
+                if (Ujkor()) return; //Új kör: léptetés, lövés, kacsa halál, kacsa győzelem
+
+                //addig ismétlődik, amíg a játékos nem nyer vagy előtte a kacsák
+            } while (!Vege());
+
+        }
+
+        //kacsák koordinátái és a célhoz legközelebbi kacsa távolsága kiírása
+        private static void Kiiras() 
+        {
             Console.Clear();
 
             for (int i = 0; i < kacsak.Count; i++) //kacsák X,Y koordinátáinak kiíratása
@@ -38,19 +58,10 @@ namespace test
             //célhoz legközelebbi kacsa távolsága
             Console.WriteLine("A legközelebbi kacsa távolsága: " + Math.Round(Min(kacsak), 2));
             Console.WriteLine();
-            
-            //felhasználó általáli lövés
-            if (Loves() == Loveshiba.hibas_koordinata)
-                Loves_error();
-
-            if (Ujkor()) return; //vége, ha a kacsák nyertek
-
-            //addig ismétlődik, amíg a játékos nem nyer vagy előtte a kacsák
-            } while (!Vege()); 
-
         }
 
-        private static double Min(List<Kacsa> kacsak) //célhoz legközelebbi kacsa távolsága kiválasztása 
+        //célhoz legközelebbi kacsa távolsága kiválasztása 
+        private static double Min(List<Kacsa> kacsak) 
         {
             int min = 0;
             for (int i = 1; i < kacsak.Count; i++)
@@ -76,7 +87,11 @@ namespace test
                 if (int.TryParse(seged[1], out result)) //Y koordináta átalakítása
                 {
                     y = result;
-                    return Loveshiba.nincs_hiba;
+                    
+                    if (x == 5 && y == 10)
+                        return Loveshiba.csalas; //csalni akar a játékos
+                    else
+                        return Loveshiba.nincs_hiba; //sikerült az átalakítás és csalás sincs
                 }
                 else
                     return Loveshiba.hibas_koordinata; //Y koordináta átalakítása sikertelen
@@ -86,26 +101,32 @@ namespace test
         }
 
         //felhasználi általáli hibás koordináta megadása lövéshez
-        private static void Loves_error()
+        private static void Loves_error(Loveshiba hiba)
         {
-            Console.Write("Hibás koordináta! Kérem adja meg őket újra.");
-            Console.ReadKey();
+            Console.WriteLine(); //1 sor eltolás, hogy a felhasználó jobban észrevegye mi a hiba
+            if (hiba == Loveshiba.hibas_koordinata)
+                Console.WriteLine("Hibás koordináta! Kérem adja meg őket újra.");
+            else if (hiba == Loveshiba.csalas)
+                Console.WriteLine("Nem csalunk! Nem lövünk a célra!"+
+                    "\nAdjon meg új célpontot a lövésnek.");
             Loves();
         }
 
         //Új kör: léptetés, lövés, kacsa halál, kacsa győzelem
         private static bool Ujkor()
         {
-            bool vege = false;
-
+            bool kacsaGyozelem = false;
             for (int i = 0; i < kacsak.Count; i++)
             {
                 kacsak[i].Lep(); //kacsák léptetése
 
                 if (kacsak[i].X == 5 && kacsak[i].Y == 10) //kacsa elért a célba
                 {
-                    Console.Write("Játék vége, a kacsák nyertek :(");
-                    vege = true;
+                    Kiiras();
+                    Console.WriteLine();
+                    Console.WriteLine("Játék vége, a kacsák nyertek :("+
+                        "\nA(z) " + (i + 1) + ". kacsa beért a célba");
+                    kacsaGyozelem = true;
                     break;
                 }
                 else if (kacsak[i].X == x && kacsak[i].Y == y) //kacsa nincs még a célban
@@ -113,7 +134,7 @@ namespace test
                     kacsak.RemoveAt(i); //kacsa kilövése, ha a felhasználó eltalálta
                 }
             }
-            return vege;
+            return kacsaGyozelem;
         }
 
         //játékos nyert
@@ -121,10 +142,12 @@ namespace test
         {
             if (kacsak.Count == 0) //minden kacsát kilőtt a játékos
             {
-                Console.Write("Játék vége, Ön nyert :)");
+                Console.Write("Kilőtte az utolsó kacsát is!"+
+                    "\nJáték vége, Ön nyert :)");
                 return true;
             }
-            return false;
+            else
+                return false;
         }
     }
 }

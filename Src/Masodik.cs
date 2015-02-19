@@ -13,7 +13,7 @@ namespace test
             Console.ReadKey();
         }
 
-        //Fibonacci sorozat 'hany' elemének a kiszámítása
+        //A paraméterben megadott Fibonacci sorozat elemeinek a kiszámítása
         private static void GetFibonacci(int hany)
         {
             
@@ -28,7 +28,7 @@ namespace test
             }
         }
 
-        //N-edik Fibonacci szám
+        //N-edik Fibonacci szám kiszámítása
         private static int RecursiveFibonacci(int N)
         {
             if (N <= 1)
