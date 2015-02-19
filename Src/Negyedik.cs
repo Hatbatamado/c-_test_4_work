@@ -28,7 +28,8 @@ namespace test
         //Körök lefuttatása
         private static void Kor()
         {
-            Loveshiba hiba;
+            Loveshiba hiba; //felhasználi általi hibákhoz, csaláshoz
+
             do
             {
                 Kiiras(); //kacsák koordinátái és a célhoz legközelebbi kacsa távolsága kiírása
@@ -100,7 +101,7 @@ namespace test
                 return Loveshiba.hibas_koordinata; //X koordináta átalakítása sikertelen
         }
 
-        //felhasználi általáli hibás koordináta megadása lövéshez
+        //felhasználi általáli hibás koordináta megadása lövéshez, csalás
         private static void Loves_error(Loveshiba hiba)
         {
             Console.WriteLine(); //1 sor eltolás, hogy a felhasználó jobban észrevegye mi a hiba

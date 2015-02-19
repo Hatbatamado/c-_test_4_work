@@ -53,17 +53,18 @@ namespace test
                         y++;
                     else
                         goto case 1; //ha felfele már nem tudunk menni, akkor próbáljunk balra menni
-                    break;
-                
+                    break;                
             }
         }
 
-        public double Tavolsag() //aktuális pont és a cél közötti távolság kiszámítása
+        //aktuális pont és a cél közötti távolság kiszámítása
+        public double Tavolsag()
         {
             return Math.Sqrt(Math.Pow(5 - x, 2) + (Math.Pow(10 - y, 2)));
         }
 
-        private int VeletlenSzam(int min, int max) //2 paraméter által határolt intervallu,ból visszaad egy véletlen számot
+        //2 paraméter által határolt intervallu,ból visszaad egy véletlen számot
+        private int VeletlenSzam(int min, int max)
         {
             return RandomHelper.GetRandomGenerator.Next(min, max + 1);
         }

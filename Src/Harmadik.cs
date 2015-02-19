@@ -33,11 +33,14 @@ namespace test
         //új szám megadása, majd megkeresése a tömbben
         private static void UjSzamKereses()
         {
+            bool siker; //megadott szám konvertálása sikeres-e
+            
             do
             {
                 Console.Write("Kérek egy újabb számot: ");
+                siker = int.TryParse(Console.ReadLine(), out result);
             }
-            while (!(int.TryParse(Console.ReadLine(), out result))); //addig fut, amíg át nem tudja konvertálni
+            while (!siker); //addig fut, amíg át nem tudja konvertálni
 
             //szamok tömb, a tömb min elem száma, a tömb max elem száma, keresendő szám
             if (Kereses(szamok, 0, szamok.Length - 1, result))
@@ -65,7 +68,7 @@ namespace test
                     else
                         return beolvas_error.HIBAS_SZAM; //sikertelen álalakítás
                 }
-                return beolvas_error.NINCS_HIBA;
+                return beolvas_error.NINCS_HIBA; //sikeres átalakítás 5db szám esetén
             }
             else if (seged.Length < 5) //megnézzük, hogy a felosztás után tényleg 5 szám van-e
                 return beolvas_error.NEM_OT;
