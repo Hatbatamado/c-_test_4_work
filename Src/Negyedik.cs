@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace test
 {
-
     public enum Loveshiba { hibas_koordinata, 
                             nincs_hiba,
                             csalas };
@@ -56,7 +55,11 @@ namespace test
             }
 
             //célhoz legközelebbi kacsa távolsága
+            Console.WriteLine();
             Console.WriteLine("A legközelebbi kacsa távolsága: " + Math.Round(Min(kacsak), 2));
+
+            //eltalált kacsák száma 
+            Console.WriteLine("A lövés ennyi kacsát talált el: " + talalat);
             Console.WriteLine();
         }
 
@@ -113,8 +116,10 @@ namespace test
         }
 
         //Új kör: léptetés, lövés, kacsa halál, kacsa győzelem
+        private static int talalat; //az eltalált kacsák számát tartalmazza 
         private static bool Ujkor()
         {
+            talalat = 0; 
             bool kacsaGyozelem = false;
             for (int i = 0; i < kacsak.Count; i++)
             {
@@ -132,6 +137,7 @@ namespace test
                 else if (kacsak[i].X == x && kacsak[i].Y == y) //kacsa nincs még a célban
                 {
                     kacsak.RemoveAt(i); //kacsa kilövése, ha a felhasználó eltalálta
+                    talalat++;
                 }
             }
             return kacsaGyozelem;
