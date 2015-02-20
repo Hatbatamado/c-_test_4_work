@@ -4,7 +4,7 @@ namespace test
 {
     class Elso
     {
-        const int minprim = 2; //2-től vannak a prím számok
+        private const int minprim = 2; //2-től vannak a prím számok
 
         public static void Feladat()
         {

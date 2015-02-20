@@ -19,7 +19,6 @@ namespace test
 
         public Kacsa()
         {
-
             x = 0; //minden kacsa a 'földről' indul
             y = VeletlenSzam(0, 10); //véletlen Y koordináta 0-10
             Lep(); //véletlen mozgás balra, felfele, balra átlósan
@@ -63,7 +62,7 @@ namespace test
             return Math.Sqrt(Math.Pow(5 - x, 2) + (Math.Pow(10 - y, 2)));
         }
 
-        //2 paraméter által határolt intervallu,ból visszaad egy véletlen számot
+        //2 paraméter által határolt intervallumból visszaad egy véletlen számot
         private int VeletlenSzam(int min, int max)
         {
             return RandomHelper.GetRandomGenerator.Next(min, max + 1);

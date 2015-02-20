@@ -4,14 +4,14 @@ using System.Collections.Generic;
 namespace test
 {
 
-    enum Loveshiba { hibas_koordinata, 
-                     nincs_hiba,
-                     csalas };
+    public enum Loveshiba { hibas_koordinata, 
+                            nincs_hiba,
+                            csalas };
 
     class Negyedik
     {
-        static List<Kacsa> kacsak; //kacsákat tartalmazó lista
-        static int result, x, y; //felhasználó lövésének koordinátái
+        private static List<Kacsa> kacsak; //kacsákat tartalmazó lista
+        private static int result, x, y; //felhasználó lövésének koordinátái
 
         public static void Feladat()
         {
@@ -43,7 +43,6 @@ namespace test
 
                 //addig ismétlődik, amíg a játékos nem nyer vagy előtte a kacsák
             } while (!Vege());
-
         }
 
         //kacsák koordinátái és a célhoz legközelebbi kacsa távolsága kiírása
@@ -75,7 +74,7 @@ namespace test
         }
 
         //felhasználó általáli lövés
-        static Loveshiba Loves()
+        private static Loveshiba Loves()
         {
             Console.Write("A lövés koordinátája vesszővel elválasztva (pl.: 4,5): ");
             string[] seged = Console.ReadLine().Split(',');
@@ -139,7 +138,7 @@ namespace test
         }
 
         //játékos nyert
-        static bool Vege()
+        private static bool Vege()
         {
             if (kacsak.Count == 0) //minden kacsát kilőtt a játékos
             {

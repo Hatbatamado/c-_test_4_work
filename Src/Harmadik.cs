@@ -9,8 +9,8 @@ namespace test
 
     class Harmadik
     {
-        static int[] szamok = new int[5]; //beolvasott számok tömbje
-        static int result; //átkonvertált beolvasott érték
+        private static int[] szamok = new int[5]; //beolvasott számok tömbje
+        private static int result; //átkonvertált beolvasott érték
 
         public static void Feladat()
         {
@@ -98,7 +98,7 @@ namespace test
         }
 
         //javított beillesztéses módszerrel rendezzük a tömböt
-        static private void Rendezes(int N, int[] X)
+        private static void Rendezes(int N, int[] X)
         { 
             int j;
             int Y;
@@ -122,7 +122,7 @@ namespace test
 
         //rekurzív bináris / logaritmikus keresés
         //vizsgálandó tömb, kezdő index, utolsó index, keresendő érték
-        static private bool Kereses(int[] tomb, int E, int U, int Y)
+        private static bool Kereses(int[] tomb, int E, int U, int Y)
         { 
             int K;
 

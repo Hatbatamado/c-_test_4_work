@@ -4,7 +4,7 @@ namespace test
 {
     class Masodik
     {
-        const int fibodb = 5; //Fibonacci sorozat elemeinek száma
+        private const int fibodb = 5; //Fibonacci sorozat elemeinek száma
 
         public static void Feladat()
         {
@@ -16,7 +16,6 @@ namespace test
         //A paraméterben megadott Fibonacci sorozat elemeinek a kiszámítása
         private static void GetFibonacci(int hany)
         {
-            
             int[] fibo = new int[hany]; //Fibonacci számokat tartalmazó tömb
 
             Console.Clear();
